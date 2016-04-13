@@ -250,9 +250,9 @@ func (in *Insight) idxBloat(args []string) {
               AND s.tablename = tbl.relname AND s.inherited=false AND s.attname=att.attname
             LEFT JOIN pg_class AS toast ON tbl.reltoastrelid = toast.oid
           WHERE att.attnum > 0 AND NOT att.attisdropped
-            AND tbl.relkind = 'r' And schemaname NOT IN ('pg_catalog', 'information_schema')
+            AND tbl.relkind = 'r'
           GROUP BY 1,2,3,4,5,6,7,8,9,10, tbl.relhasoids
-          ORDER BY 2,3
+          ORDER BY 2,3 LIMIT 15
         ) AS s
       ) AS s2
     ) AS s3;
@@ -277,6 +277,10 @@ func (in *Insight) idxBloat(args []string) {
 	if err := rows.Err(); err != nil {
 		log.Fatal(err)
 		os.Exit(1)
+	}
+	if len(results) == 0 {
+		fmt.Println("No bloat found")
+		os.Exit(0)
 	}
 	t := gotabulate.Create(results)
 	t.SetHeaders([]string{"Database", "Schema Name", "Table", "Real Table Size",
