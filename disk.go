@@ -19,8 +19,8 @@ func (in *Insight) Disk(args []string) {
 	case "db":
 		in.diskDB(args[1:])
 		break
-	case "total":
-		in.diskTotal(args[1:])
+	case "relations":
+		in.diskRelations(args[1:])
 		break
 	default:
 		fmt.Println("Unknown command ", command)
@@ -72,7 +72,7 @@ func (in *Insight) diskDB(argv []string) {
 	fmt.Println()
 }
 
-func (in *Insight) diskTotal(argv []string) {
+func (in *Insight) diskRelations(argv []string) {
 	query := `
     SELECT nspname || '.' || relname AS "relation",
         pg_size_pretty(pg_relation_size(C.oid)) AS "size"

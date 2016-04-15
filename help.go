@@ -14,8 +14,8 @@ Commands:
 
     disk db
         Shows disk usage for all databases accessible from the configured user
-    disk tables
-        Show disk usage for all tables in the configured database
+    disk relations
+        Show disk usage for all relations in the configured database
 
     cache total
         Shows the total number of cache hits in the database
