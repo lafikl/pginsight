@@ -54,6 +54,9 @@
 <pre><code>Usage:
 PGINSIGHT_DBURL="postgres://username:password@localhost/dbname?sslmode=disable" ./pginsight &lt;cmdname&gt; [subcommand]
 
+Usage:
+./pginsight <cmdname> [--flags]
+
 Commands:
     index usage
         Shows which indexes are being scanned and how many tuples are fetched
@@ -64,8 +67,8 @@ Commands:
 
     disk db
         Shows disk usage for all databases accessible from the configured user
-    disk tables
-        Show disk usage for all tables in the configured database
+    disk relations
+        Show disk usage for all relations in the configured database
 
     cache total
         Shows the total number of cache hits in the database
@@ -73,7 +76,7 @@ Commands:
         Breakdown of cache hits per table
 
     queries
-        Shows the slowest 10 queries.
+        Shows the slowest 10 queries
 </code></pre>
 
 <h1>
